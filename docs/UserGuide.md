@@ -141,8 +141,33 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding points: `addpoints`
+
+Adds points for a member in the loyalty program.
+
+Format: `addpoints n/MEMBER_NAME p/POINTS`
+
+* Adds the corresponding number of points for a memeber based on their name.
+* The points **must be a positive integer** 1, 2, 3, … 200
+
+Examples:
+* `addpoints n/John Doe p/50`
+
 ### Clearing all entries : `clear`
 
+### Subtracting points: `subpoints`
+
+Subtracts points for a member in the loyalty program.
+
+Format: `subpoints n/MEMBER_NAME p/POINTS`
+
+* Subtracts the corresponding number of points for a memeber based on their name.
+* The points **must be a positive integer** 1, 2, 3, … [current number of points the member has currently]
+
+Examples:
+* `addpoints n/John Doe p/50`
+
+### Clearing all entries : `clear`
 Clears all entries from the address book.
 
 Format: `clear`
