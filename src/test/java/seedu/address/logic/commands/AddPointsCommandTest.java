@@ -36,7 +36,7 @@ public class AddPointsCommandTest {
 
         AddPointsCommand addPointsCommand = new AddPointsCommand(firstPerson.getName(), new Points(POINTS_STUB));
 
-        String expectedMessage = String.format(AddPointsCommand.MESSAGE_ADDPOINTS_SUCCESS, POINTS_STUB,
+        String expectedMessage = String.format(AddPointsCommand.MESSAGE_ADD_POINTS_SUCCESS, POINTS_STUB,
                 firstPerson.getName());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());

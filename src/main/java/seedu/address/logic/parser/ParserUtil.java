@@ -183,7 +183,7 @@ public class ParserUtil {
         if (!MembershipPoints.isValidMembershipPoints(membershipPointsInt)) {
             throw new ParseException(MESSAGE_INVALID_POINTS);
         }
-        return new MembershipPoints(trimmedMembershipPoints);
+        return new MembershipPoints(membershipPointsInt);
     }
 
 }

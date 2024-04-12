@@ -10,6 +10,7 @@ import java.util.Optional;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -20,7 +21,8 @@ public class AddMemPointsCommand extends Command {
     public static final String COMMAND_WORD = "addmempts";
 
     public static final String INVALID_COMMAND_FORMAT = "Invalid command format.";
-    public static final String MESSAGE_CONSTRAINTS = "Points to add must be a positive integer.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Points to add must be a positive integer and less than 2,000,000,000.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add membership points to the person identified. "
@@ -29,14 +31,16 @@ public class AddMemPointsCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/Alice "
             + PREFIX_MEMSHIP_PTS + "100";
     public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added %1$d membership points to Person: %2$s";
+    public static final String MESSAGE_MAX_POINTS =
+            "%s's membership points are now at the maximum limit of 2,000,000,000.";
     private final Name name;
-    private final int pointsToAdd;
+    private final MembershipPoints pointsToAdd;
 
     /**
      * @param name of the person in the filtered person list to edit the remark
      * @param pointsToAdd of the person to be updated to
      */
-    public AddMemPointsCommand(Name name, int pointsToAdd) {
+    public AddMemPointsCommand(Name name, MembershipPoints pointsToAdd) {
         requireAllNonNull(name, pointsToAdd);
         this.name = name;
         this.pointsToAdd = pointsToAdd;
@@ -50,28 +54,24 @@ public class AddMemPointsCommand extends Command {
                 .findFirst();
 
         if (personOptional.isEmpty()) {
-            throw new CommandException(
-                    Messages.MESSAGE_PERSON_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
 
         Person personToEdit = personOptional.get();
+        int oldMemPoints = personToEdit.getMembershipPoints().getValue();
+        personToEdit.addMembershipPoints(pointsToAdd);
+        int newMemPoints = personToEdit.getMembershipPoints().getValue();
 
-        Person editedPerson = new Person(personToEdit.getName(),
-                personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getMembershipPoints().addPoints(pointsToAdd),
-                personToEdit.getAllergens(), personToEdit.getPoints(), personToEdit.getOrders());
-
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(personToEdit, personToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
 
-    /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_ADD_MEMBERSHIP_SUCCESS, pointsToAdd, personToEdit.getName());
+        if (newMemPoints == Person.MAX_POINTS && oldMemPoints != newMemPoints) {
+            return new CommandResult(String.format(MESSAGE_MAX_POINTS, personToEdit.getName(), Person.MAX_POINTS));
+        } else {
+            return new CommandResult(String.format("Added %d membership points to %s",
+                    pointsToAdd.getValue(), personToEdit.getName().fullName));
+        }
+
     }
 
     @Override

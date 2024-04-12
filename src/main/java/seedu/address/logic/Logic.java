@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.item.Catalogue;
 import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 
@@ -35,7 +36,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the catalogue */
-    ObservableList<Item> getCatalogue();
+    Catalogue getCatalogue();
 
     /**
      * Returns the user prefs' address book file path.

@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 
 /**
@@ -16,8 +17,8 @@ import seedu.address.model.person.Name;
 public class AddMemPointsCommandParser implements Parser<AddMemPointsCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
-     * and returns a {@code RemarkCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code AddMemPointsCommand}
+     * and returns a {@code AddMemPointsCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddMemPointsCommand parse(String args) throws ParseException {
@@ -29,20 +30,13 @@ public class AddMemPointsCommandParser implements Parser<AddMemPointsCommand> {
                     + "\n" + AddMemPointsCommand.MESSAGE_USAGE));
         }
 
-        Name name;
-        try {
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
-            new ParseException(Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE);
-        } catch (ParseException pe) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS + "\n" + AddMemPointsCommand.MESSAGE_USAGE);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MEMSHIP_PTS)) {
+            throw new ParseException(String.format(AddMemPointsCommand.INVALID_COMMAND_FORMAT
+                    + "\n" + AddMemPointsCommand.MESSAGE_USAGE));
         }
 
-        int pointsToAdd;
-        try {
-            pointsToAdd = ParserUtil.parseMemPointsToAdd(argMultimap.getValue(PREFIX_MEMSHIP_PTS).orElse(""));
-        } catch (ParseException pe) {
-            throw new ParseException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
-        }
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
+        MembershipPoints pointsToAdd = ParserUtil.parseMembershipPoints(argMultimap.getValue(PREFIX_MEMSHIP_PTS).orElse(""));
 
         return new AddMemPointsCommand(name, pointsToAdd);
     }

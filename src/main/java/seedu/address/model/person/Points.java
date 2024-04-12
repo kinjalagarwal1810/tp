@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public final class Points {
     public static final String MESSAGE_CONSTRAINTS =
-            "Points should be a non-negative integer.";
+            "Points should be a non-negative integer and cannot exceed 2,000,000,000..";
+    public static final int MAX_POINTS = 2_000_000_000;
 
     public final int value;
 
@@ -43,14 +44,19 @@ public final class Points {
     public static boolean isValidPoints(String test) {
         try {
             int value = Integer.parseInt(test);
-            return value >= 0; // Points must be non-negative
+            return value >= 0 && value <= MAX_POINTS; // Points must be non-negative and <2000000000
         } catch (NumberFormatException e) {
             return false; // The string was not an integer.
         }
     }
 
     public Points addPoints(int pointsToAdd) {
-        return new Points(this.value + pointsToAdd);
+        long newPointValue = (long) this.value + (long) pointsToAdd;
+        if (newPointValue > MAX_POINTS) {
+            return new Points(MAX_POINTS);
+        } else {
+            return new Points((int) newPointValue);
+        }
     }
 
     @Override

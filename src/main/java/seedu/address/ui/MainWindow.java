@@ -144,7 +144,7 @@ public class MainWindow extends UiPart<Stage> implements PersonSelectionListener
         personOrdersPanel = new PersonOrdersPanel();
         personOrdersPanelPlaceholder.getChildren().add(personOrdersPanel.getRoot());
 
-        cataloguePanel = new CataloguePanel(logic.getCatalogue());
+        cataloguePanel = new CataloguePanel(logic.getCatalogue().getItemList());
         cataloguePanelPlaceholder.getChildren().add(cataloguePanel.getRoot());
     }
 

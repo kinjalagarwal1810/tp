@@ -28,9 +28,9 @@ public class Person {
     private final Set<Allergen> allergens = new HashSet<>();
     private final ArrayList<Order> orders = new ArrayList<>();
 
-    // Points and Membership Points can be updated by {@code addPoints} method only
     private Points points;
     private MembershipPoints membershipPoints;
+    public static final int MAX_POINTS = 2_000_000_000;
 
     /**
      * Every field must be present and not null.
@@ -100,10 +100,40 @@ public class Person {
 
     /**
      * Adds points to the current points and membership points.
+     * If adding the specified points would exceed the maximum points allowed,
+     * sets the points to the maximum instead.
+     *
+     * @param pointsToAdd The number of points to add.
      */
-    public void addPoints(int pointsToAdd) {
-        this.points = this.points.addPoints(pointsToAdd);
-        this.membershipPoints = this.membershipPoints.addPoints(pointsToAdd);
+    public void addPoints(Points pointsToAdd) {
+        int newPointsValue = Math.min(this.points.getValue() + pointsToAdd.getValue(), MAX_POINTS);
+        this.points = new Points(newPointsValue);
+    }
+
+    public void addMembershipPoints(MembershipPoints pointsToAdd) {
+        int newMembershipPointsValue = Math.min(this.membershipPoints.getValue() + pointsToAdd.getValue(), MAX_POINTS);
+        this.membershipPoints = new MembershipPoints(newMembershipPointsValue);
+    }
+
+
+    /**
+     * Updates the points of this person and returns a new Person instance with updated points.
+     * @param newPoints The new points value to set.
+     * @return A new Person instance with updated points.
+     */
+    public Person setPoints(Points newPoints) {
+        return new Person(this.name, this.phone, this.email, this.address, this.membershipPoints,
+                this.allergens, newPoints, this.orders);
+    }
+
+    /**
+     * Updates the membership points of this person and returns a new Person instance with updated membership points.
+     * @param newMembershipPoints The new membership points value to set.
+     * @return A new Person instance with updated membership points.
+     */
+    public Person setMembershipPoints(MembershipPoints newMembershipPoints) {
+        return new Person(this.name, this.phone, this.email, this.address, newMembershipPoints,
+                this.allergens, this.points, this.orders);
     }
 
     /**

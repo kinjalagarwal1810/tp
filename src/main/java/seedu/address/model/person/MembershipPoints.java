@@ -84,6 +84,15 @@ public class MembershipPoints {
         return String.format("%s (%d pts)", getTier(), value);
     }
 
+    /**
+     * Returns the integer value of points.
+     *
+     * @return The integer value of the points.
+     */
+    public int getValue() {
+        return this.value;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

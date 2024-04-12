@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.item.Catalogue;
 import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 
@@ -21,24 +22,27 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private Catalogue catalogue;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Catalogue catalogue) {
+        requireAllNonNull(addressBook, userPrefs, catalogue);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.info("Catalogue items: " + catalogue.getItemList());
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.catalogue = new Catalogue();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Catalogue());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -129,11 +133,11 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Catalogue Accessors =============================================================
+    //=========== Catalogue Accessors =====================================ObservableList<Item>========================
 
     @Override
-    public ObservableList<Item> getCatalogue() {
-        return addressBook.getItemList();
+    public Catalogue getCatalogue() {
+        return this.catalogue;
     }
 
     @Override

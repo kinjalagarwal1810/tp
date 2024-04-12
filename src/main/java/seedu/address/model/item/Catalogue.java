@@ -27,6 +27,10 @@ public class Catalogue implements Iterable<Item> {
 
     public Catalogue() {}
 
+    public ObservableList<Item> getItemList() {
+        return internalList;
+    }
+
     /**
      * Returns false if the list contains an item with the same name.
      */

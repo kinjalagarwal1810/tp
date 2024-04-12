@@ -32,7 +32,6 @@ public class AddItemCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the catalogue.";
-
     private final Item toAdd;
 
     /**
