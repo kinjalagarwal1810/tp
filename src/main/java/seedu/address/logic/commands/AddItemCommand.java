@@ -61,5 +61,4 @@ public class AddItemCommand extends Command {
                 || (other instanceof AddItemCommand // instanceof handles nulls
                 && toAdd.equals(((AddItemCommand) other).toAdd));
     }
-
 }
