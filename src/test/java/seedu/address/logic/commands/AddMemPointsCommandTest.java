@@ -56,7 +56,7 @@ public class AddMemPointsCommandTest {
     @Test
     public void execute_partialNameSpecifiedUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(0);
-        Name partialName = new Name(firstPerson.getName().fullName.split(" ")[0]);  // Use only the first name part
+        Name partialName = new Name(firstPerson.getName().fullName.split(" ")[0]);
         int updatedPoints = Math.min(
                 Person.MAX_POINTS, firstPerson.getMembershipPoints().getValue() + POINTS_TO_ADD_STUB.getValue());
         Person editedPerson =

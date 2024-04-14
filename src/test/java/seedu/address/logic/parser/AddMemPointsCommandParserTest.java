@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
