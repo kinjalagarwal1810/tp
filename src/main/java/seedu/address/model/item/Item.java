@@ -7,7 +7,7 @@ public class Item implements Cloneable {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Item names should contain alphabets and spaces, and cannot be blank.";
-    public static final String ITEM_NAME_VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z\\s]+$";
+    public static final String ITEM_NAME_VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z\\s]*$";
 
     private String name;
     private int points;
