@@ -18,7 +18,7 @@ import seedu.address.model.person.orders.Order;
  */
 public class Person {
 
-    // Identity fields
+    public static final int MAX_POINTS = 2_000_000_000;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -31,7 +31,6 @@ public class Person {
     // Points and Membership Points can be updated by {@code addPoints} method only
     private Points points;
     private MembershipPoints membershipPoints;
-    public static final int MAX_POINTS = 2_000_000_000;
 
 
     /**
