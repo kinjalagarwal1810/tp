@@ -131,7 +131,8 @@ public class AddOrderCommand extends Command {
             sb.append(" ").append(MESSAGE_MAX_MEMBERSHIP_POINTS_REACHED);
         }
 
-        return sb.toString();    }
+        return sb.toString();
+    }
 
     @Override
     public boolean equals(Object other) {

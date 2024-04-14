@@ -29,8 +29,8 @@ public class AddMemPointsCommandParser implements Parser<AddMemPointsCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MEMSHIP_PTS)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(AddMemPointsCommand.INVALID_COMMAND_FORMAT + "\n" +
-                    AddMemPointsCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(AddMemPointsCommand.INVALID_COMMAND_FORMAT + "\n"
+                    + AddMemPointsCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(null));

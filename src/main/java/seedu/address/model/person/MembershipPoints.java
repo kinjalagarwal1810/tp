@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -104,6 +102,7 @@ public class MembershipPoints {
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        Integer expPoints = this.value;
+        return expPoints.hashCode();
     }
 }
