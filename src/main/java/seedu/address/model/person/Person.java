@@ -107,8 +107,12 @@ public class Person {
      * @param pointsToAdd The number of points to add.
      */
     public void addPoints(Points pointsToAdd) {
-        int newPointsValue = Math.min(this.points.getValue() + pointsToAdd.getValue(), MAX_POINTS);
-        this.points = new Points(newPointsValue);
+        long newPointsValue = (long) this.points.getValue() + (long) pointsToAdd.getValue();
+        if (newPointsValue >= MAX_POINTS) {
+            this.points = new Points(MAX_POINTS);
+        } else {
+            this.points = new Points((int) newPointsValue);
+        }
     }
 
     /**
@@ -119,8 +123,12 @@ public class Person {
      * @param pointsToAdd The number of membership points to add.
      */
     public void addMembershipPoints(MembershipPoints pointsToAdd) {
-        int newMembershipPointsValue = Math.min(this.membershipPoints.getValue() + pointsToAdd.getValue(), MAX_POINTS);
-        this.membershipPoints = new MembershipPoints(newMembershipPointsValue);
+        long newMembershipPointsValue = (long) this.membershipPoints.getValue() + (long) pointsToAdd.getValue();
+        if (newMembershipPointsValue >= MAX_POINTS) {
+            this.membershipPoints = new MembershipPoints(MAX_POINTS);
+        } else {
+            this.membershipPoints = new MembershipPoints((int) newMembershipPointsValue);
+        }
     }
 
     /**

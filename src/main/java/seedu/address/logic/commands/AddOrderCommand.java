@@ -124,11 +124,12 @@ public class AddOrderCommand extends Command {
         StringBuilder sb = new StringBuilder(String.format(MESSAGE_ADD_ORDER_SUCCESS, person.getName()));
 
         if (maxPointsReached && maxMembershipPointsReached) {
-            sb.append(" ").append(MESSAGE_MAX_POINTS_REACHED).append(" ").append(MESSAGE_MAX_MEMBERSHIP_POINTS_REACHED);
+            sb.append(" \n").append(MESSAGE_MAX_POINTS_REACHED).append(" \n")
+                    .append(MESSAGE_MAX_MEMBERSHIP_POINTS_REACHED);
         } else if (maxPointsReached) {
-            sb.append(" ").append(MESSAGE_MAX_POINTS_REACHED);
+            sb.append(" \n").append(MESSAGE_MAX_POINTS_REACHED);
         } else if (maxMembershipPointsReached) {
-            sb.append(" ").append(MESSAGE_MAX_MEMBERSHIP_POINTS_REACHED);
+            sb.append(" \n").append(MESSAGE_MAX_MEMBERSHIP_POINTS_REACHED);
         }
 
         return sb.toString();

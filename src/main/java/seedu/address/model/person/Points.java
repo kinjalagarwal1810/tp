@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public final class Points {
     public static final String MESSAGE_CONSTRAINTS =
-            "Points should be a non-negative integer.";
+            "Points should be a non-negative integer less than 2,000,000,000.";
 
     public final int value;
 
