@@ -49,10 +49,6 @@ public final class Points {
         }
     }
 
-    public Points addPoints(int pointsToAdd) {
-        return new Points(this.value + pointsToAdd);
-    }
-
     @Override
     public String toString() {
         return Integer.toString(value);

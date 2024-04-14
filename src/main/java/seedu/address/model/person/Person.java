@@ -31,6 +31,8 @@ public class Person {
     // Points and Membership Points can be updated by {@code addPoints} method only
     private Points points;
     private MembershipPoints membershipPoints;
+    public static final int MAX_POINTS = 2_000_000_000;
+
 
     /**
      * Every field must be present and not null.
@@ -99,11 +101,27 @@ public class Person {
     }
 
     /**
-     * Adds points to the current points and membership points.
+     * Adds points to the current points.
+     * If adding the specified points would exceed the maximum points allowed,
+     * sets the points to the maximum instead.
+     *
+     * @param pointsToAdd The number of points to add.
      */
-    public void addPoints(int pointsToAdd) {
-        this.points = this.points.addPoints(pointsToAdd);
-        this.membershipPoints = this.membershipPoints.addPoints(pointsToAdd);
+    public void addPoints(Points pointsToAdd) {
+        int newPointsValue = Math.min(this.points.getValue() + pointsToAdd.getValue(), MAX_POINTS);
+        this.points = new Points(newPointsValue);
+    }
+
+    /**
+     * Adds membership points to the current membership points.
+     * If adding the specified points would exceed the maximum membership points allowed,
+     * sets the membership points to the maximum instead.
+     *
+     * @param pointsToAdd The number of membership points to add.
+     */
+    public void addMembershipPoints(MembershipPoints pointsToAdd) {
+        int newMembershipPointsValue = Math.min(this.membershipPoints.getValue() + pointsToAdd.getValue(), MAX_POINTS);
+        this.membershipPoints = new MembershipPoints(newMembershipPointsValue);
     }
 
     /**
