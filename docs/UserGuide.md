@@ -185,7 +185,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 🌟 <span style="color:Gold">**Benefit**:</span> Whenever you feel stuck or need a quick reminder on how to use a specific command, just type help to open up this User Guide. This ensures you're never left in the dark about how to manage your loyalty program effectively.
-💡 <span style="color:yellow">**Tip**:</span> Use the `-c` flag (`help-c`) to show you a list of all the commands available in this application without opening an external link!
+💡 <span style="color:yellow">**Tip**:</span> Use the `-c` flag (`help -c`) to show you a list of all the commands available in this application without opening an external link!
 
 ### 4.2 Initializing program with [Seed Data](#6-glossary) : `seeddata`
 
