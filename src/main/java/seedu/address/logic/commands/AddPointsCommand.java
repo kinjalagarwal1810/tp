@@ -28,7 +28,7 @@ public class AddPointsCommand extends Command {
             + "Parameters: " + PREFIX_NAME + "NAME " + PREFIX_POINTS + "POINTS \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_POINTS + "40";
     public static final String MESSAGE_ADDPOINTS_SUCCESS =
-            "Added %1$s points to %2$s";
+            "Added %1$s point(s) to %2$s";
     private final Name name;
     private final Points points;
 

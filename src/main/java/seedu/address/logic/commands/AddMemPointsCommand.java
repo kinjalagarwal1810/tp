@@ -28,7 +28,7 @@ public class AddMemPointsCommand extends Command {
             + "Parameters: n/MEMBER_NAME " + PREFIX_MEMSHIP_PTS + "POINTS_TO_ADD\n"
             + "Example: " + COMMAND_WORD + " n/Alice "
             + PREFIX_MEMSHIP_PTS + "100";
-    public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added %1$d membership points to Person: %2$s";
+    public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added %1$d membership point(s) to Person: %2$s";
     private final Name name;
     private final int pointsToAdd;
 
